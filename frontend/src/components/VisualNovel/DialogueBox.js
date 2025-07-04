@@ -63,7 +63,7 @@ const DialogueBox = ({ character, text, onNext, isVisible, pause }) => {
         }}>
           {text}
         </p>
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
           <Button
             onClick={onNext}
             className="bg-gray-700 hover:bg-gray-600 text-white border-2 border-white transform hover:scale-105 hover:-translate-y-1 transition-all duration-200 text-xs sm:text-sm"
@@ -72,6 +72,9 @@ const DialogueBox = ({ character, text, onNext, isVisible, pause }) => {
             {pause && pause > 2000 ? '💭 Continue' : 'Continue'}
             <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
           </Button>
+          <div className="text-xs text-gray-500" style={{ fontFamily: 'monospace', marginLeft: '10px' }}>
+            Made with Emergent
+          </div>
         </div>
       </div>
 
