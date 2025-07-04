@@ -5,7 +5,7 @@ import axios from "axios";
 import GameEngine from "./components/VisualNovel/GameEngine";
 import { Card } from "./components/ui/card";
 import { Button } from "./components/ui/button";
-import { Heart, BookOpen, Music } from "lucide-react";
+import { Heart, BookOpen, Music, Map } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -24,71 +24,101 @@ const Home = () => {
     helloWorldApi();
   }, []);
 
+  const pixelBackground = {
+    backgroundImage: `
+      radial-gradient(circle at 25% 25%, #fff 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, #fff 2px, transparent 2px)
+    `,
+    backgroundSize: '40px 40px',
+    backgroundPosition: '0 0, 20px 20px'
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-red-900 flex items-center justify-center p-4">
-      <Card className="max-w-4xl w-full bg-black/40 backdrop-blur-md border-white/20 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 to-pink-400 flex items-center justify-center p-4" style={pixelBackground}>
+      <Card className="max-w-4xl w-full bg-white border-4 border-black overflow-hidden" style={{
+        borderRadius: '0px',
+        boxShadow: '12px 12px 0px #000'
+      }}>
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20" />
           <div className="relative p-8 text-center">
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <Heart className="w-24 h-24 text-pink-400 animate-pulse" />
-                <div className="absolute -top-2 -right-2">
-                  <Music className="w-8 h-8 text-purple-400" />
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-pink-500 border-4 border-black flex items-center justify-center text-6xl" style={{
+                  borderRadius: '0px',
+                  boxShadow: '6px 6px 0px #000'
+                }}>
+                  💕
                 </div>
-                <div className="absolute -bottom-2 -left-2">
-                  <BookOpen className="w-8 h-8 text-blue-400" />
+                <div className="absolute -top-2 -right-2 w-12 h-12 bg-purple-500 border-2 border-black flex items-center justify-center text-2xl" style={{
+                  borderRadius: '0px'
+                }}>
+                  🎵
+                </div>
+                <div className="absolute -bottom-2 -left-2 w-12 h-12 bg-green-500 border-2 border-black flex items-center justify-center text-2xl" style={{
+                  borderRadius: '0px'
+                }}>
+                  📚
                 </div>
               </div>
             </div>
             
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <h1 className="text-6xl font-bold mb-4 text-black" style={{ 
+              fontFamily: 'monospace',
+              textShadow: '4px 4px 0px #ccc'
+            }}>
               Hearts in Harmony
             </h1>
             
-            <p className="text-xl text-gray-300 mb-2">
-              A Romantic Visual Novel
+            <p className="text-2xl text-gray-700 mb-2" style={{ fontFamily: 'monospace' }}>
+              A Pixel-Art Romantic Adventure
             </p>
             
-            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              Experience the beautiful love story between Kai, a thoughtful 21-year-old INFJ, and Luna, a creative 18-year-old INFP. 
-              Navigate through meaningful choices that shape their romantic journey through music, literature, and deep connections.
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'monospace' }}>
+              Join Mobi (21, INFJ) and Roshi (18, INFP) on their romantic journey through Sakura University. 
+              Explore different locations, make meaningful choices, and discover the power of complementary love!
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <Heart className="w-8 h-8 text-pink-400 mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Romantic Choices</h3>
-                <p className="text-sm text-gray-300">Make decisions that affect your relationship and unlock different story paths</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <div className="bg-pink-300 border-2 border-black p-4" style={{ borderRadius: '0px' }}>
+                <Heart className="w-8 h-8 text-pink-700 mx-auto mb-2" />
+                <h3 className="font-bold mb-1 text-black" style={{ fontFamily: 'monospace' }}>Romance</h3>
+                <p className="text-sm text-gray-700" style={{ fontFamily: 'monospace' }}>Make choices that shape your love story</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <BookOpen className="w-8 h-8 text-blue-400 mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Rich Storytelling</h3>
-                <p className="text-sm text-gray-300">Immerse yourself in deep character development and meaningful dialogue</p>
+              <div className="bg-blue-300 border-2 border-black p-4" style={{ borderRadius: '0px' }}>
+                <Map className="w-8 h-8 text-blue-700 mx-auto mb-2" />
+                <h3 className="font-bold mb-1 text-black" style={{ fontFamily: 'monospace' }}>Explore</h3>
+                <p className="text-sm text-gray-700" style={{ fontFamily: 'monospace' }}>Travel between campus locations</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                <Music className="w-8 h-8 text-purple-400 mx-auto mb-2" />
-                <h3 className="font-semibold mb-1">Save & Load</h3>
-                <p className="text-sm text-gray-300">Save your progress and explore different story branches</p>
+              <div className="bg-purple-300 border-2 border-black p-4" style={{ borderRadius: '0px' }}>
+                <BookOpen className="w-8 h-8 text-purple-700 mx-auto mb-2" />
+                <h3 className="font-bold mb-1 text-black" style={{ fontFamily: 'monospace' }}>Story</h3>
+                <p className="text-sm text-gray-700" style={{ fontFamily: 'monospace' }}>Rich character development</p>
+              </div>
+              <div className="bg-green-300 border-2 border-black p-4" style={{ borderRadius: '0px' }}>
+                <Music className="w-8 h-8 text-green-700 mx-auto mb-2" />
+                <h3 className="font-bold mb-1 text-black" style={{ fontFamily: 'monospace' }}>Save</h3>
+                <p className="text-sm text-gray-700" style={{ fontFamily: 'monospace' }}>Multiple save slots available</p>
               </div>
             </div>
             
             <div className="flex gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                className="bg-gradient-to-r from-blue-500 to-pink-500 hover:from-blue-600 hover:to-pink-600 text-white font-bold border-4 border-black transform hover:scale-105 transition-all duration-300"
+                style={{ borderRadius: '0px', fontFamily: 'monospace' }}
                 onClick={() => window.location.href = '/game'}
               >
                 <Heart className="w-5 h-5 mr-2" />
-                Start Your Story
+                ▶ START ADVENTURE ◀
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border-4 border-black text-black hover:bg-gray-200 font-bold"
+                style={{ borderRadius: '0px', fontFamily: 'monospace' }}
               >
                 <BookOpen className="w-5 h-5 mr-2" />
-                Learn More
+                📖 ABOUT
               </Button>
             </div>
           </div>
