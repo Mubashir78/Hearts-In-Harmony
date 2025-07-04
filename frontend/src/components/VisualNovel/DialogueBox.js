@@ -6,25 +6,43 @@ import { ChevronRight } from 'lucide-react';
 const DialogueBox = ({ character, text, onNext, isVisible }) => {
   if (!isVisible) return null;
 
+  const getCharacterColor = () => {
+    if (character === 'Mobi') return 'bg-blue-500';
+    if (character === 'Roshi') return 'bg-pink-500';
+    return 'bg-purple-500';
+  };
+
+  const getCharacterEmoji = () => {
+    if (character === 'Mobi') return '🧑‍🎓';
+    if (character === 'Roshi') return '👩‍🎨';
+    return '💭';
+  };
+
   return (
-    <Card className="mx-4 mb-4 bg-black/80 border-white/20 text-white backdrop-blur-sm">
+    <Card className="mx-4 mb-4 bg-white border-4 border-black text-black" style={{
+      borderRadius: '0px',
+      boxShadow: '6px 6px 0px #000'
+    }}>
       <div className="p-6">
         {character && (
           <div className="flex items-center mb-3">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg mr-3">
-              {character.charAt(0).toUpperCase()}
+            <div className={`w-12 h-12 ${getCharacterColor()} border-2 border-black flex items-center justify-center text-white font-bold text-lg mr-3`}
+                 style={{ borderRadius: '0px' }}>
+              {getCharacterEmoji()}
             </div>
-            <h3 className="text-lg font-semibold text-purple-300">{character}</h3>
+            <h3 className="text-lg font-bold text-black" style={{ fontFamily: 'monospace' }}>
+              {character}
+            </h3>
           </div>
         )}
-        <p className="text-white leading-relaxed mb-4 text-base">
+        <p className="text-black leading-relaxed mb-4 text-base" style={{ fontFamily: 'monospace' }}>
           {text}
         </p>
         <div className="flex justify-end">
           <Button
             onClick={onNext}
-            variant="outline"
-            className="bg-purple-600/20 border-purple-400/30 text-purple-300 hover:bg-purple-600/40 hover:text-white transition-all duration-200"
+            className="bg-gray-700 hover:bg-gray-800 text-white border-2 border-black"
+            style={{ borderRadius: '0px' }}
           >
             Continue
             <ChevronRight className="w-4 h-4 ml-2" />

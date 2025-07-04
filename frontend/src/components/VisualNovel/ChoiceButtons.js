@@ -1,18 +1,22 @@
 import React from 'react';
 import { Button } from '../ui/button';
-import { Heart, Brain, Sparkles } from 'lucide-react';
+import { Heart, Brain, Sparkles, MapPin } from 'lucide-react';
 
 const ChoiceButtons = ({ choices, onChoice }) => {
   const getChoiceIcon = (choice) => {
     if (choice.type === 'romantic') return <Heart className="w-4 h-4" />;
     if (choice.type === 'logical') return <Brain className="w-4 h-4" />;
+    if (choice.type === 'social') return <Sparkles className="w-4 h-4" />;
+    if (choice.nextLocation) return <MapPin className="w-4 h-4" />;
     return <Sparkles className="w-4 h-4" />;
   };
 
   const getChoiceColor = (choice) => {
-    if (choice.type === 'romantic') return 'from-pink-600 to-red-600 hover:from-pink-500 hover:to-red-500';
-    if (choice.type === 'logical') return 'from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500';
-    return 'from-green-600 to-teal-600 hover:from-green-500 hover:to-teal-500';
+    if (choice.type === 'romantic') return 'bg-pink-500 hover:bg-pink-600';
+    if (choice.type === 'logical') return 'bg-blue-500 hover:bg-blue-600';
+    if (choice.type === 'social') return 'bg-purple-500 hover:bg-purple-600';
+    if (choice.nextLocation) return 'bg-green-500 hover:bg-green-600';
+    return 'bg-gray-500 hover:bg-gray-600';
   };
 
   return (
@@ -21,13 +25,14 @@ const ChoiceButtons = ({ choices, onChoice }) => {
         <Button
           key={index}
           onClick={() => onChoice(choice)}
-          className={`w-full max-w-2xl bg-gradient-to-r ${getChoiceColor(choice)} border-none text-white font-medium py-3 px-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 transform`}
+          className={`w-full max-w-2xl ${getChoiceColor(choice)} border-2 border-black text-white font-bold py-3 px-6 transition-all duration-300 hover:scale-105 transform`}
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
           <div className="flex items-center justify-center gap-2">
             {getChoiceIcon(choice)}
             <span className="text-left">{choice.text}</span>
             {choice.points && (
-              <span className="ml-auto text-sm opacity-80">
+              <span className="ml-auto text-sm">
                 {choice.points > 0 ? `+${choice.points}` : choice.points} 💕
               </span>
             )}
