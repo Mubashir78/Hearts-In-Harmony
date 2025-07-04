@@ -3,28 +3,39 @@ import { Card } from '../ui/card';
 import { Button } from '../ui/button';
 import { ChevronRight } from 'lucide-react';
 
-const DialogueBox = ({ character, text, onNext, isVisible }) => {
+const DialogueBox = ({ character, text, onNext, isVisible, pause }) => {
   if (!isVisible) return null;
 
   const getCharacterColor = () => {
     if (character === 'Mobi') return 'bg-blue-600';
     if (character === 'Roshi') return 'bg-pink-600';
-    if (character === 'Narrator') return 'bg-purple-600';
+    if (character === 'Narrator') return 'bg-gray-500'; // Changed to grayish hue
     return 'bg-gray-600';
   };
 
   const getCharacterEmoji = () => {
-    if (character === 'Mobi') return '🧑‍🎓';
-    if (character === 'Roshi') return '👩‍🎨';
-    if (character === 'Narrator') return '📖';
+    if (character === 'Mobi') return '🤓'; // More introverted emoji
+    if (character === 'Roshi') return '🌸'; // Gentle, creative emoji
+    if (character === 'Narrator') return '👁️'; // Observer emoji
     return '💭';
   };
 
   const getBoxColor = () => {
     if (character === 'Mobi') return 'border-blue-400';
     if (character === 'Roshi') return 'border-pink-400';
-    if (character === 'Narrator') return 'border-purple-400';
+    if (character === 'Narrator') return 'border-gray-400'; // Changed to grayish
     return 'border-gray-400';
+  };
+
+  const getTextStyle = () => {
+    if (character === 'Narrator') {
+      return {
+        fontStyle: 'italic',
+        color: '#d1d5db', // Lighter gray for narrator text
+        fontSize: '0.95em'
+      };
+    }
+    return {};
   };
 
   return (
@@ -47,7 +58,8 @@ const DialogueBox = ({ character, text, onNext, isVisible }) => {
         )}
         <p className="text-white leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base" style={{ 
           fontFamily: 'monospace',
-          animation: character === 'Narrator' ? 'typewriter 2s ease-in-out' : 'none'
+          ...getTextStyle(),
+          animation: character === 'Narrator' ? 'typewriter 1.5s ease-in-out' : 'none'
         }}>
           {text}
         </p>
@@ -57,7 +69,7 @@ const DialogueBox = ({ character, text, onNext, isVisible }) => {
             className="bg-gray-700 hover:bg-gray-600 text-white border-2 border-white transform hover:scale-105 hover:-translate-y-1 transition-all duration-200 text-xs sm:text-sm"
             style={{ borderRadius: '0px', fontFamily: 'monospace' }}
           >
-            Continue
+            {pause && pause > 2000 ? '💭 Continue' : 'Continue'}
             <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
           </Button>
         </div>
@@ -78,9 +90,11 @@ const DialogueBox = ({ character, text, onNext, isVisible }) => {
         @keyframes typewriter {
           from {
             opacity: 0;
+            transform: translateX(-5px);
           }
           to {
             opacity: 1;
+            transform: translateX(0);
           }
         }
       `}</style>
