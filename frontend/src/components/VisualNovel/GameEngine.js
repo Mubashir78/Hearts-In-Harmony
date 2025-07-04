@@ -41,7 +41,6 @@ const GameEngine = () => {
     if (currentDialogueIndex < currentScene.dialogue.length - 1) {
       setCurrentDialogueIndex(currentDialogueIndex + 1);
     } else {
-      // Scene completed, check for next scene or show map
       if (currentScene.nextScene) {
         setCurrentSceneId(currentScene.nextScene);
         setCurrentDialogueIndex(0);
@@ -50,7 +49,6 @@ const GameEngine = () => {
           visitedScenes: [...prev.visitedScenes, currentScene.nextScene]
         }));
       } else {
-        // No next scene defined, show map
         setShowMap(true);
       }
     }
@@ -74,7 +72,6 @@ const GameEngine = () => {
     } else if (choice.nextLocation) {
       setCurrentLocation(choice.nextLocation);
       setShowMap(false);
-      // Generate scene based on location and previous visits
       const locationSceneId = generateLocationScene(choice.nextLocation);
       setCurrentSceneId(locationSceneId);
       setCurrentDialogueIndex(0);
@@ -84,7 +81,6 @@ const GameEngine = () => {
   };
 
   const generateLocationScene = (location) => {
-    // Generate scene IDs based on location and story progress
     const hasMetRoshi = gameState.flags.metRoshi || gameState.relationshipPoints > 0;
     
     if (location === 'library' && !hasMetRoshi) {
@@ -97,7 +93,6 @@ const GameEngine = () => {
       return 'music_room_visit';
     }
     
-    // Default scene for locations
     return `${location}_visit`;
   };
 
@@ -105,15 +100,12 @@ const GameEngine = () => {
     setCurrentLocation(locationId);
     setShowMap(false);
     
-    // Generate appropriate scene for the location
     const sceneId = generateLocationScene(locationId);
     
-    // Check if scene exists in our story data
     if (gameStory[sceneId]) {
       setCurrentSceneId(sceneId);
       setCurrentDialogueIndex(0);
     } else {
-      // Show map if no scene available
       setShowMap(true);
     }
   };
@@ -148,25 +140,26 @@ const GameEngine = () => {
     
     const character = currentDialogue?.character;
     if (character === 'Mobi') {
-      return 'bg-gradient-to-br from-blue-400 to-blue-600';
+      return 'bg-gradient-to-br from-blue-800 via-blue-900 to-blue-950';
     } else if (character === 'Roshi') {
-      return 'bg-gradient-to-br from-pink-400 to-pink-600';
+      return 'bg-gradient-to-br from-pink-800 via-pink-900 to-pink-950';
+    } else if (character === 'Narrator') {
+      return 'bg-gradient-to-br from-purple-800 via-purple-900 to-purple-950';
     }
-    return 'bg-gradient-to-br from-purple-400 to-purple-600';
+    return 'bg-gradient-to-br from-gray-800 via-gray-900 to-black';
   };
 
   const getPixelBackground = () => {
     return {
       backgroundImage: `
-        radial-gradient(circle at 25% 25%, #fff 1px, transparent 1px),
-        radial-gradient(circle at 75% 75%, #fff 1px, transparent 1px)
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.05) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 1px, transparent 1px)
       `,
       backgroundSize: '20px 20px',
       backgroundPosition: '0 0, 10px 10px'
     };
   };
 
-  // Show map system
   if (showMap) {
     return (
       <MapSystem
@@ -179,15 +172,15 @@ const GameEngine = () => {
 
   if (!currentScene) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-400 to-pink-400 flex items-center justify-center" style={getPixelBackground()}>
-        <Card className="p-8 text-center bg-white border-4 border-black" style={{
+      <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black flex items-center justify-center p-4" style={getPixelBackground()}>
+        <Card className="p-6 sm:p-8 text-center bg-gray-900 border-4 border-white animate-bounce" style={{
           borderRadius: '0px',
-          boxShadow: '8px 8px 0px #000'
+          boxShadow: '8px 8px 0px #fff'
         }}>
-          <h2 className="text-2xl font-bold mb-4 text-black" style={{ fontFamily: 'monospace' }}>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-white" style={{ fontFamily: 'monospace' }}>
             🎉 GAME COMPLETE! 🎉
           </h2>
-          <p className="text-gray-700 mb-4" style={{ fontFamily: 'monospace' }}>
+          <p className="text-gray-300 mb-4 text-sm sm:text-base" style={{ fontFamily: 'monospace' }}>
             Thank you for playing Hearts in Harmony!
           </p>
           <Button 
@@ -205,10 +198,10 @@ const GameEngine = () => {
               });
               setShowMap(false);
             }}
-            className="bg-blue-500 hover:bg-blue-600 text-white border-2 border-black"
-            style={{ borderRadius: '0px' }}
+            className="bg-blue-600 hover:bg-blue-500 text-white border-2 border-white transform hover:scale-105 transition-all duration-200"
+            style={{ borderRadius: '0px', fontFamily: 'monospace' }}
           >
-            Play Again
+            🔄 Play Again
           </Button>
         </Card>
       </div>
@@ -216,74 +209,74 @@ const GameEngine = () => {
   }
 
   return (
-    <div className={`min-h-screen ${getBackgroundColor()} relative overflow-hidden`} style={getPixelBackground()}>
+    <div className={`min-h-screen ${getBackgroundColor()} relative overflow-hidden transition-all duration-500`} style={getPixelBackground()}>
       
       {/* Game UI Controls */}
-      <div className="absolute top-4 right-4 flex gap-2 z-50">
+      <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex flex-wrap gap-1 sm:gap-2 z-50">
         <Button
           variant="outline"
           size="sm"
           onClick={() => setShowMap(true)}
-          className="bg-white border-2 border-black text-black hover:bg-gray-100"
-          style={{ borderRadius: '0px' }}
+          className="bg-gray-800 border-2 border-white text-white hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
-          <Map className="w-4 h-4 mr-2" />
-          Map
+          <Map className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+          <span className="hidden sm:inline">Map</span>
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => setShowSaveLoadMenu(true)}
-          className="bg-white border-2 border-black text-black hover:bg-gray-100"
-          style={{ borderRadius: '0px' }}
+          className="bg-gray-800 border-2 border-white text-white hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
-          <Save className="w-4 h-4 mr-2" />
-          Save
+          <Save className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+          <span className="hidden sm:inline">Save</span>
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => setShowSaveLoadMenu(true)}
-          className="bg-white border-2 border-black text-black hover:bg-gray-100"
-          style={{ borderRadius: '0px' }}
+          className="bg-gray-800 border-2 border-white text-white hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
-          <FolderOpen className="w-4 h-4 mr-2" />
-          Load
+          <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+          <span className="hidden sm:inline">Load</span>
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => setIsAutoPlay(!isAutoPlay)}
-          className={`bg-white border-2 border-black text-black hover:bg-gray-100 ${isAutoPlay ? 'bg-yellow-300' : ''}`}
-          style={{ borderRadius: '0px' }}
+          className={`bg-gray-800 border-2 border-white text-white hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm ${isAutoPlay ? 'bg-yellow-600' : ''}`}
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
-          {isAutoPlay ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          {isAutoPlay ? <Pause className="w-3 h-3 sm:w-4 sm:h-4" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4" />}
         </Button>
         <Button
           variant="outline"
           size="sm"
           onClick={() => setIsMuted(!isMuted)}
-          className="bg-white border-2 border-black text-black hover:bg-gray-100"
-          style={{ borderRadius: '0px' }}
+          className="bg-gray-800 border-2 border-white text-white hover:bg-gray-700 transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
+          style={{ borderRadius: '0px', fontFamily: 'monospace' }}
         >
-          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+          {isMuted ? <VolumeX className="w-3 h-3 sm:w-4 sm:h-4" /> : <Volume2 className="w-3 h-3 sm:w-4 sm:h-4" />}
         </Button>
       </div>
 
       {/* Game Stats */}
-      <div className="absolute top-4 left-4 z-50">
-        <Card className="bg-white border-2 border-black text-black p-3" style={{ borderRadius: '0px' }}>
-          <div className="text-sm" style={{ fontFamily: 'monospace' }}>
-            <div>💕 Love Points: {gameState.relationshipPoints}</div>
-            <div>📍 Location: {locations[currentLocation]?.name}</div>
-            <div>📖 Scene: {currentScene.title}</div>
+      <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-50">
+        <Card className="bg-gray-900 border-2 border-white text-white p-2 sm:p-3 transform hover:scale-105 transition-all duration-200" style={{ borderRadius: '0px' }}>
+          <div className="text-xs sm:text-sm" style={{ fontFamily: 'monospace' }}>
+            <div>💕 Love: {gameState.relationshipPoints}</div>
+            <div>📍 {locations[currentLocation]?.name}</div>
+            <div className="hidden sm:block">📖 {currentScene.title}</div>
           </div>
         </Card>
       </div>
 
       {/* Simple Pixel Art Location Display */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <div className="text-6xl">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 animate-pulse">
+        <div className="text-4xl sm:text-6xl transform hover:scale-110 transition-transform duration-300">
           {currentLocation === 'dorm_room' && '🏠'}
           {currentLocation === 'library' && '📚'}
           {currentLocation === 'cafe' && '☕'}
@@ -304,7 +297,7 @@ const GameEngine = () => {
 
       {/* Choice Buttons */}
       {currentDialogue?.choices && (
-        <div className="absolute bottom-32 left-0 right-0 z-50">
+        <div className="absolute bottom-24 sm:bottom-32 left-0 right-0 z-50">
           <ChoiceButtons
             choices={currentDialogue.choices}
             onChoice={handleChoice}
