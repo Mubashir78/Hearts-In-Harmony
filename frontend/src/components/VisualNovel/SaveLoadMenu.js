@@ -35,54 +35,56 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-      <Card className="w-full max-w-4xl max-h-[80vh] m-4 bg-white border-4 border-black overflow-hidden" style={{
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+      <Card className="w-full max-w-4xl max-h-[90vh] bg-gray-900 border-4 border-white overflow-hidden animate-slideDown" style={{
         borderRadius: '0px',
-        boxShadow: '8px 8px 0px #000'
+        boxShadow: '8px 8px 0px #fff'
       }}>
-        <div className="flex items-center justify-between p-4 border-b-2 border-black">
-          <div className="flex gap-2">
+        <div className="flex items-center justify-between p-3 sm:p-4 border-b-2 border-white">
+          <div className="flex gap-1 sm:gap-2">
             <Button
               variant={activeTab === 'save' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setActiveTab('save')}
-              className={`text-black font-bold border-2 border-black ${activeTab === 'save' ? 'bg-blue-300' : 'bg-white hover:bg-gray-100'}`}
+              className={`text-white font-bold border-2 border-white transition-all duration-200 hover:scale-105 text-xs sm:text-sm ${activeTab === 'save' ? 'bg-blue-600' : 'bg-gray-800 hover:bg-gray-700'}`}
               style={{ borderRadius: '0px', fontFamily: 'monospace' }}
             >
-              <Save className="w-4 h-4 mr-2" />
-              💾 SAVE
+              <Save className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+              <span className="hidden sm:inline">💾 SAVE</span>
             </Button>
             <Button
               variant={activeTab === 'load' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setActiveTab('load')}
-              className={`text-black font-bold border-2 border-black ${activeTab === 'load' ? 'bg-pink-300' : 'bg-white hover:bg-gray-100'}`}
+              className={`text-white font-bold border-2 border-white transition-all duration-200 hover:scale-105 text-xs sm:text-sm ${activeTab === 'load' ? 'bg-pink-600' : 'bg-gray-800 hover:bg-gray-700'}`}
               style={{ borderRadius: '0px', fontFamily: 'monospace' }}
             >
-              <FolderOpen className="w-4 h-4 mr-2" />
-              📂 LOAD
+              <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+              <span className="hidden sm:inline">📂 LOAD</span>
             </Button>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="text-black hover:bg-gray-100 border-2 border-black"
+            className="text-white hover:bg-gray-700 border-2 border-white transform hover:scale-105 transition-all duration-200"
             style={{ borderRadius: '0px' }}
           >
-            <X className="w-4 h-4" />
+            <X className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
         </div>
 
-        <div className="p-4 overflow-y-auto max-h-96">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {saveSlots.map((slot) => (
-              <Card key={slot.id} className="bg-gray-100 border-2 border-black hover:bg-gray-200 transition-colors" style={{
-                borderRadius: '0px'
+        <div className="p-2 sm:p-4 overflow-y-auto max-h-96">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+            {saveSlots.map((slot, index) => (
+              <Card key={slot.id} className="bg-gray-800 border-2 border-white hover:bg-gray-700 transition-all duration-200 transform hover:scale-105 animate-fadeIn" style={{
+                borderRadius: '0px',
+                animationDelay: `${index * 0.1}s`,
+                animationFillMode: 'both'
               }}>
-                <div className="p-4">
+                <div className="p-3 sm:p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-black font-bold" style={{ fontFamily: 'monospace' }}>
+                    <h3 className="text-white font-bold text-xs sm:text-base" style={{ fontFamily: 'monospace' }}>
                       💾 SLOT {slot.id}
                     </h3>
                     {!slot.empty && (
@@ -90,38 +92,38 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDelete(slot.id)}
-                        className="text-red-600 hover:text-red-800 hover:bg-red-100 border-2 border-red-600"
+                        className="text-red-400 hover:text-red-300 hover:bg-red-900/20 border-2 border-red-600 transform hover:scale-105 transition-all duration-200"
                         style={{ borderRadius: '0px' }}
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                       </Button>
                     )}
                   </div>
                   
                   {slot.empty ? (
-                    <div className="text-gray-500 text-sm mb-4" style={{ fontFamily: 'monospace' }}>
+                    <div className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4" style={{ fontFamily: 'monospace' }}>
                       📭 Empty slot
                     </div>
                   ) : (
-                    <div className="text-gray-700 text-sm mb-4" style={{ fontFamily: 'monospace' }}>
-                      <div>📖 Scene: {slot.currentSceneId}</div>
-                      <div>📍 Location: {slot.currentLocation}</div>
-                      <div>💕 Love: {slot.gameState.relationshipPoints}</div>
-                      <div>📅 Date: {slot.formattedDate}</div>
+                    <div className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4" style={{ fontFamily: 'monospace' }}>
+                      <div>📖 {slot.currentSceneId}</div>
+                      <div className="hidden sm:block">📍 {slot.currentLocation}</div>
+                      <div>💕 {slot.gameState.relationshipPoints}</div>
+                      <div className="hidden sm:block">📅 {slot.formattedDate}</div>
                     </div>
                   )}
 
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 sm:gap-2">
                     {activeTab === 'save' && (
                       <Button
                         onClick={() => onSave(slot.id)}
                         variant="outline"
                         size="sm"
-                        className="flex-1 bg-green-200 border-2 border-green-600 text-green-800 hover:bg-green-300 font-bold"
+                        className="flex-1 bg-green-600 border-2 border-green-400 text-white hover:bg-green-500 font-bold transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
                         style={{ borderRadius: '0px', fontFamily: 'monospace' }}
                       >
-                        <Save className="w-4 h-4 mr-2" />
-                        💾 SAVE
+                        <Save className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+                        <span className="hidden sm:inline">💾</span>
                       </Button>
                     )}
                     {activeTab === 'load' && !slot.empty && (
@@ -129,11 +131,11 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                         onClick={() => onLoad(slot.id)}
                         variant="outline"
                         size="sm"
-                        className="flex-1 bg-blue-200 border-2 border-blue-600 text-blue-800 hover:bg-blue-300 font-bold"
+                        className="flex-1 bg-blue-600 border-2 border-blue-400 text-white hover:bg-blue-500 font-bold transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm"
                         style={{ borderRadius: '0px', fontFamily: 'monospace' }}
                       >
-                        <FolderOpen className="w-4 h-4 mr-2" />
-                        📂 LOAD
+                        <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4 sm:mr-2" />
+                        <span className="hidden sm:inline">📂</span>
                       </Button>
                     )}
                   </div>
@@ -143,6 +145,38 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
           </div>
         </div>
       </Card>
+
+      <style jsx>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
