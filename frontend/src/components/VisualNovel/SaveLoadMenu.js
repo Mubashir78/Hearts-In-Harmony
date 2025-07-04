@@ -36,33 +36,39 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-      <Card className="w-full max-w-4xl max-h-[80vh] m-4 bg-gray-900 border-gray-700 overflow-hidden">
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+      <Card className="w-full max-w-4xl max-h-[80vh] m-4 bg-white border-4 border-black overflow-hidden" style={{
+        borderRadius: '0px',
+        boxShadow: '8px 8px 0px #000'
+      }}>
+        <div className="flex items-center justify-between p-4 border-b-2 border-black">
           <div className="flex gap-2">
             <Button
               variant={activeTab === 'save' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setActiveTab('save')}
-              className="text-white"
+              className={`text-black font-bold border-2 border-black ${activeTab === 'save' ? 'bg-blue-300' : 'bg-white hover:bg-gray-100'}`}
+              style={{ borderRadius: '0px', fontFamily: 'monospace' }}
             >
               <Save className="w-4 h-4 mr-2" />
-              Save Game
+              💾 SAVE
             </Button>
             <Button
               variant={activeTab === 'load' ? 'default' : 'ghost'}
               size="sm"
               onClick={() => setActiveTab('load')}
-              className="text-white"
+              className={`text-black font-bold border-2 border-black ${activeTab === 'load' ? 'bg-pink-300' : 'bg-white hover:bg-gray-100'}`}
+              style={{ borderRadius: '0px', fontFamily: 'monospace' }}
             >
               <FolderOpen className="w-4 h-4 mr-2" />
-              Load Game
+              📂 LOAD
             </Button>
           </div>
           <Button
             variant="ghost"
             size="sm"
             onClick={onClose}
-            className="text-white hover:bg-gray-800"
+            className="text-black hover:bg-gray-100 border-2 border-black"
+            style={{ borderRadius: '0px' }}
           >
             <X className="w-4 h-4" />
           </Button>
@@ -71,16 +77,21 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
         <div className="p-4 overflow-y-auto max-h-96">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {saveSlots.map((slot) => (
-              <Card key={slot.id} className="bg-gray-800 border-gray-600 hover:bg-gray-700 transition-colors">
+              <Card key={slot.id} className="bg-gray-100 border-2 border-black hover:bg-gray-200 transition-colors" style={{
+                borderRadius: '0px'
+              }}>
                 <div className="p-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-white font-medium">Slot {slot.id}</h3>
+                    <h3 className="text-black font-bold" style={{ fontFamily: 'monospace' }}>
+                      💾 SLOT {slot.id}
+                    </h3>
                     {!slot.empty && (
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => handleDelete(slot.id)}
-                        className="text-red-400 hover:text-red-300 hover:bg-red-900/20"
+                        className="text-red-600 hover:text-red-800 hover:bg-red-100 border-2 border-red-600"
+                        style={{ borderRadius: '0px' }}
                       >
                         <Trash2 className="w-4 h-4" />
                       </Button>
@@ -88,12 +99,15 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                   </div>
                   
                   {slot.empty ? (
-                    <div className="text-gray-400 text-sm mb-4">Empty slot</div>
+                    <div className="text-gray-500 text-sm mb-4" style={{ fontFamily: 'monospace' }}>
+                      📭 Empty slot
+                    </div>
                   ) : (
-                    <div className="text-gray-300 text-sm mb-4">
-                      <div>Scene: {slot.currentSceneId}</div>
-                      <div>Relationship: {slot.gameState.relationshipPoints} 💕</div>
-                      <div>Date: {slot.formattedDate}</div>
+                    <div className="text-gray-700 text-sm mb-4" style={{ fontFamily: 'monospace' }}>
+                      <div>📖 Scene: {slot.currentSceneId}</div>
+                      <div>📍 Location: {slot.currentLocation}</div>
+                      <div>💕 Love: {slot.gameState.relationshipPoints}</div>
+                      <div>📅 Date: {slot.formattedDate}</div>
                     </div>
                   )}
 
@@ -103,10 +117,11 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                         onClick={() => onSave(slot.id)}
                         variant="outline"
                         size="sm"
-                        className="flex-1 bg-green-600/20 border-green-500 text-green-300 hover:bg-green-600/40"
+                        className="flex-1 bg-green-200 border-2 border-green-600 text-green-800 hover:bg-green-300 font-bold"
+                        style={{ borderRadius: '0px', fontFamily: 'monospace' }}
                       >
                         <Save className="w-4 h-4 mr-2" />
-                        Save Here
+                        💾 SAVE
                       </Button>
                     )}
                     {activeTab === 'load' && !slot.empty && (
@@ -114,10 +129,11 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                         onClick={() => onLoad(slot.id)}
                         variant="outline"
                         size="sm"
-                        className="flex-1 bg-blue-600/20 border-blue-500 text-blue-300 hover:bg-blue-600/40"
+                        className="flex-1 bg-blue-200 border-2 border-blue-600 text-blue-800 hover:bg-blue-300 font-bold"
+                        style={{ borderRadius: '0px', fontFamily: 'monospace' }}
                       >
                         <FolderOpen className="w-4 h-4 mr-2" />
-                        Load Game
+                        📂 LOAD
                       </Button>
                     )}
                   </div>
