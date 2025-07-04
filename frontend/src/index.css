@@ -18,6 +18,126 @@ code {
         monospace;
 }
 
+/* Pixel Art Animations */
+@keyframes pixelGlow {
+  0% { 
+    box-shadow: 8px 8px 0px #fff; 
+    transform: scale(1);
+  }
+  100% { 
+    box-shadow: 12px 12px 0px #fff, 0 0 20px rgba(255,255,255,0.3); 
+    transform: scale(1.02);
+  }
+}
+
+@keyframes pixelFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@keyframes pixelBounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Custom utility classes */
+.animate-pulse-slow {
+  animation: pixelGlow 3s ease-in-out infinite alternate;
+}
+
+.animate-flicker {
+  animation: pixelFlicker 2s ease-in-out infinite;
+}
+
+.animate-bounce-pixel {
+  animation: pixelBounce 1s ease-in-out infinite;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-typewriter {
+  animation: typewriter 1s ease-out;
+}
+
+/* Hover effects for pixel art */
+.pixel-hover:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 6px 6px 0px #000, 0 0 15px rgba(255,255,255,0.2);
+  transition: all 0.2s ease-out;
+}
+
+.pixel-click:active {
+  transform: scale(0.98);
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.1s ease-out;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .text-responsive {
+    font-size: 1rem;
+  }
+}
 
 
 @layer base {
