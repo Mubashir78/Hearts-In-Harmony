@@ -1,51 +1,56 @@
-// Mock story data for the pixel-art romantic visual novel
+// Mock story data for the pixel-art romantic visual novel with narrator
 export const gameStory = {
   intro: {
     title: "New Beginnings",
     location: "dorm_room",
     dialogue: [
       {
-        character: null,
-        text: "Welcome to 'Hearts in Harmony' - a pixel-art romantic adventure about two souls finding each other.",
+        character: "Narrator",
+        text: "Welcome to Sakura University, where hearts find their rhythm and souls discover harmony...",
         emotion: "neutral"
       },
       {
-        character: null,
-        text: "You are Mobi, a 21-year-old INFJ who just moved to Sakura University. Your journey begins in your dorm room...",
+        character: "Narrator", 
+        text: "Our story follows Mobi, a thoughtful 21-year-old INFJ who believes in planning every detail of life, and the universe's plan to introduce him to someone unexpected...",
         emotion: "neutral"
       },
       {
         character: "Mobi",
-        text: "First day at a new university. I should probably explore the campus and get familiar with the different locations.",
+        text: "First day at this new university. I should probably explore the campus systematically and get familiar with the different locations.",
         emotion: "thoughtful"
+      },
+      {
+        character: "Narrator",
+        text: "As Mobi stands in his neatly organized dorm room, little does he know that today will challenge everything he thinks he knows about spontaneity and love.",
+        emotion: "neutral"
       },
       {
         character: "Mobi",
-        text: "As an INFJ, I tend to plan everything carefully. Let me check out the campus map and decide where to go first.",
+        text: "Let me check the campus map and decide where to go first. A structured approach always works best.",
         emotion: "thoughtful"
       },
       {
-        character: null,
-        text: "You can now explore different locations on campus. Each location might have different people and events!",
+        character: "Narrator",
+        text: "The campus map gleams before him, each location holding the potential for a life-changing encounter. Where will fate guide our analytical hero first?",
         emotion: "neutral",
         choices: [
           {
             id: 1,
-            text: "Visit the Library",
+            text: "📚 Visit the Library",
             type: "logical",
             points: 1,
             nextLocation: "library"
           },
           {
             id: 2,
-            text: "Go to the Café",
+            text: "☕ Go to the Café", 
             type: "social",
             points: 1,
             nextLocation: "cafe"
           },
           {
             id: 3,
-            text: "Explore the Garden",
+            text: "🌸 Explore the Garden",
             type: "thoughtful",
             points: 1,
             nextLocation: "garden"
@@ -60,57 +65,72 @@ export const gameStory = {
     location: "library",
     dialogue: [
       {
+        character: "Narrator",
+        text: "The library welcomes Mobi with its familiar scent of aged paper and whispered knowledge. Sunlight filters through tall windows, casting geometric patterns on the floor.",
+        emotion: "neutral"
+      },
+      {
         character: "Mobi",
-        text: "The library is peaceful and quiet. Perfect for someone like me who enjoys contemplation and deep thinking.",
+        text: "Perfect. This peaceful atmosphere is exactly what I need for deep thinking and reflection.",
         emotion: "thoughtful"
       },
       {
-        character: null,
-        text: "As you browse through the philosophy section, you hear a soft humming coming from the poetry aisle.",
+        character: "Narrator",
+        text: "But as Mobi browses through the philosophy section, a gentle melody drifts through the silence—someone is humming near the poetry aisle, their voice like a musical secret waiting to be discovered.",
         emotion: "neutral"
       },
       {
         character: "Roshi",
-        text: "♪ La la la... ♪ Oh! I didn't notice anyone else here. Sorry, I tend to hum when I'm reading poetry.",
+        text: "♪ La la la... ♪ Oh! I'm so sorry! I didn't realize anyone else was here. I always hum when I'm reading poetry—it just feels... right, you know?",
         emotion: "shy"
       },
       {
+        character: "Narrator",
+        text: "And there she stands—Roshi, an 18-year-old INFP with eyes that seem to hold entire universes of creativity. Her genuine embarrassment only makes her more endearing.",
+        emotion: "neutral"
+      },
+      {
         character: "Roshi",
-        text: "I'm Roshi, by the way. I'm new here too - just started this semester. Are you also a literature student?",
+        text: "I'm Roshi, by the way. I'm new here too—just started this semester. Are you also a literature student? You have that thoughtful aura about you.",
         emotion: "happy"
       },
       {
         character: "Mobi",
-        text: "I'm Mobi. Actually, I study philosophy, but I appreciate good literature. Your humming was quite beautiful - it reminded me of a classical piece.",
+        text: "I'm Mobi. Actually, I study philosophy, but I deeply appreciate good literature. Your humming was quite beautiful—it reminded me of Debussy's gentle compositions.",
+        emotion: "neutral"
+      },
+      {
+        character: "Narrator",
+        text: "A spark of recognition passes between them—two souls who understand that beauty exists in unexpected moments and that deep thoughts deserve musical accompaniment.",
         emotion: "neutral"
       },
       {
         character: "Roshi",
-        text: "Really? That's so sweet! I love how music and literature connect. They both express emotions in their own unique ways.",
+        text: "You know Debussy? That's amazing! I love how music and literature connect on such a profound level. They both express what words alone sometimes cannot.",
         emotion: "happy"
       },
       {
-        character: null,
-        text: "You feel a connection forming with this creative girl. What do you do next?",
+        character: "Narrator",
+        text: "The air between them shimmers with possibility. What path will Mobi choose to deepen this unexpected connection?",
         emotion: "neutral",
         choices: [
           {
             id: 1,
-            text: "Ask about her favorite poets",
+            text: "💭 Ask about her favorite poets and writers",
             type: "logical",
             points: 2,
             nextScene: "library_talk"
           },
           {
             id: 2,
-            text: "Suggest exploring other locations together",
+            text: "🗺️ Suggest exploring campus together",
             type: "romantic",
             points: 3,
             nextScene: "together_exploration"
           },
           {
             id: 3,
-            text: "Share your philosophical interests",
+            text: "🧠 Share your philosophical insights",
             type: "thoughtful",
             points: 1,
             nextScene: "intellectual_bond"
@@ -125,95 +145,50 @@ export const gameStory = {
     location: "cafe",
     dialogue: [
       {
-        character: "Mobi",
-        text: "This café has a warm, welcoming atmosphere. The soft lighting and comfortable seating make it perfect for studying or quiet conversations.",
-        emotion: "thoughtful"
-      },
-      {
-        character: null,
-        text: "You notice a girl sitting alone at a corner table, writing in what appears to be a journal. She has a gentle, dreamy expression.",
+        character: "Narrator",
+        text: "The campus café wraps around Mobi like a warm embrace, filled with the rich aroma of coffee and the gentle murmur of student conversations.",
         emotion: "neutral"
       },
       {
         character: "Mobi",
-        text: "She looks like she's in her own creative world. I wonder if I should approach her or give her space to write?",
+        text: "This atmosphere is perfect for contemplation. The soft lighting and comfortable seating create an ideal environment for both studying and meaningful conversations.",
         emotion: "thoughtful"
       },
       {
-        character: null,
-        text: "The girl looks up and catches your eye, smiling shyly before returning to her writing.",
+        character: "Narrator",
+        text: "As Mobi surveys the space, his analytical gaze falls upon a girl sitting alone at a corner table. She's writing in what appears to be a journal, her expression dreamy and focused, as if channeling inspiration from another realm.",
+        emotion: "neutral"
+      },
+      {
+        character: "Mobi",
+        text: "She seems completely absorbed in her creative world. I wonder if I should approach her or respect her artistic solitude?",
+        emotion: "thoughtful"
+      },
+      {
+        character: "Narrator",
+        text: "At that moment, the girl—Roshi—looks up from her writing. Their eyes meet across the café, and she offers a shy smile that seems to light up the entire room before returning to her journal.",
         emotion: "neutral",
         choices: [
           {
             id: 1,
-            text: "Approach and introduce yourself",
+            text: "😊 Approach and introduce yourself",
             type: "social",
             points: 2,
             nextScene: "cafe_meeting"
           },
           {
             id: 2,
-            text: "Order a drink and wait to see if she initiates contact",
+            text: "⏰ Order a drink and wait patiently",
             type: "thoughtful",
             points: 1,
             nextScene: "patient_approach"
           },
           {
             id: 3,
-            text: "Leave her to her writing and explore other locations",
+            text: "🚪 Give her space and explore elsewhere",
             type: "logical",
             points: 0,
             nextLocation: "map"
-          }
-        ]
-      }
-    ]
-  },
-
-  garden_first_visit: {
-    title: "The Peaceful Garden",
-    location: "garden",
-    dialogue: [
-      {
-        character: "Mobi",
-        text: "This garden is beautiful and serene. The perfect place for reflection and finding inner peace.",
-        emotion: "thoughtful"
-      },
-      {
-        character: null,
-        text: "You walk along the stone path, enjoying the quiet rustling of leaves and the gentle breeze.",
-        emotion: "neutral"
-      },
-      {
-        character: "Mobi",
-        text: "Sometimes solitude is exactly what an INFJ needs. But I should probably meet some people too, since I'm new here.",
-        emotion: "thoughtful"
-      },
-      {
-        character: null,
-        text: "You can continue exploring or head back to choose another location.",
-        emotion: "neutral",
-        choices: [
-          {
-            id: 1,
-            text: "Stay and meditate in the garden",
-            type: "thoughtful",
-            points: 1,
-            nextScene: "garden_meditation"
-          },
-          {
-            id: 2,
-            text: "Visit the Library",
-            type: "logical",
-            points: 0,
-            nextLocation: "library"
-          },
-          {
-            id: 3,
-            text: "Go to the Café",
-            type: "social",
-            points: 0,
-            nextLocation: "cafe"
           }
         ]
       }
@@ -225,115 +200,60 @@ export const gameStory = {
     location: "map",
     dialogue: [
       {
+        character: "Narrator",
+        text: "Something magical happens when two compatible souls decide to explore the world together—the ordinary becomes extraordinary, and every path holds new possibilities.",
+        emotion: "neutral"
+      },
+      {
         character: "Mobi",
-        text: "Would you like to explore the campus together? I'm still getting familiar with all the locations myself.",
+        text: "Would you like to explore the campus together? I'm still getting familiar with all the locations myself, and I'd appreciate the company.",
         emotion: "happy"
       },
       {
         character: "Roshi",
-        text: "That sounds wonderful! I love discovering new places. Where should we go first?",
+        text: "That sounds absolutely wonderful! I love discovering new places, especially with someone who appreciates both planning and spontaneity.",
         emotion: "happy"
       },
       {
+        character: "Narrator",
+        text: "As they stand together looking at the campus map, Mobi marvels at how natural it feels to be spontaneous with Roshi, while she finds comfort in his thoughtful approach to exploration.",
+        emotion: "neutral"
+      },
+      {
         character: "Mobi",
-        text: "I appreciate how open you are to new experiences. As an INFJ, I usually prefer planned activities, but spontaneous exploration with you sounds appealing.",
+        text: "I appreciate how open you are to new experiences. As an INFJ, I usually prefer planned activities, but exploring with you feels... right.",
         emotion: "thoughtful"
       },
       {
         character: "Roshi",
-        text: "And I love that you're willing to be spontaneous with me! As an INFP, I usually follow my heart, but having someone thoughtful like you makes me feel more confident.",
+        text: "And I love that you're willing to be spontaneous with me! Having someone thoughtful like you makes me feel more confident about following my heart.",
         emotion: "happy"
       },
       {
-        character: null,
-        text: "You both stand looking at the campus map together. Where would you like to go?",
+        character: "Narrator",
+        text: "The campus map spreads before them like a canvas of possibilities. Each location promises new discoveries about themselves and each other. Where will their journey take them next?",
         emotion: "neutral",
         choices: [
           {
             id: 1,
-            text: "Visit the Café for a cozy chat",
+            text: "☕ Visit the Café for intimate conversation",
             type: "romantic",
             points: 3,
             nextLocation: "cafe"
           },
           {
             id: 2,
-            text: "Explore the Garden together",
+            text: "🌸 Explore the Garden's natural beauty",
             type: "thoughtful",
             points: 2,
             nextLocation: "garden"
           },
           {
             id: 3,
-            text: "Check out the Music Room",
+            text: "🎵 Discover the Music Room together",
             type: "creative",
             points: 4,
             nextLocation: "music_room"
-          }
-        ]
-      }
-    ]
-  },
-
-  cafe_meeting: {
-    title: "A Chance Encounter",
-    location: "cafe",
-    dialogue: [
-      {
-        character: "Mobi",
-        text: "Hi, I'm Mobi. I hope I'm not interrupting your writing. I'm new here and thought I'd introduce myself.",
-        emotion: "neutral"
-      },
-      {
-        character: "Roshi",
-        text: "Oh, not at all! I'm Roshi. I was just writing in my journal about first impressions of this place. Please, sit down!",
-        emotion: "happy"
-      },
-      {
-        character: "Mobi",
-        text: "A journal? That's wonderful. I keep one too, though mine is more structured - I use it to understand my thoughts and plan my goals.",
-        emotion: "thoughtful"
-      },
-      {
-        character: "Roshi",
-        text: "That's so organized! Mine is more free-flowing - random thoughts, poetry fragments, and dreams. I love that we both journal though!",
-        emotion: "happy"
-      },
-      {
-        character: "Mobi",
-        text: "It's fascinating how we both process our inner worlds through writing, but in such different ways. Your creative approach complements my analytical one.",
-        emotion: "thoughtful"
-      },
-      {
-        character: "Roshi",
-        text: "Exactly! You're so thoughtful about everything. I feel like I could learn a lot from your structured approach to life.",
-        emotion: "happy"
-      },
-      {
-        character: null,
-        text: "The conversation flows naturally. You both realize you have a special connection.",
-        emotion: "neutral",
-        choices: [
-          {
-            id: 1,
-            text: "Ask if she'd like to explore campus together",
-            type: "romantic",
-            points: 4,
-            nextScene: "together_exploration"
-          },
-          {
-            id: 2,
-            text: "Suggest meeting here regularly to write together",
-            type: "thoughtful",
-            points: 2,
-            nextScene: "study_partnership"
-          },
-          {
-            id: 3,
-            text: "Share more about your philosophical interests",
-            type: "logical",
-            points: 1,
-            nextScene: "intellectual_bond"
           }
         ]
       }
@@ -345,57 +265,67 @@ export const gameStory = {
     location: "music_room",
     dialogue: [
       {
+        character: "Narrator",
+        text: "The music room welcomes them with instruments that seem to hum with potential melodies. Sunlight streams through windows, creating a natural spotlight on the grand piano.",
+        emotion: "neutral"
+      },
+      {
         character: "Roshi",
-        text: "Oh wow, they have a piano! I've been wanting to play again. Do you mind if I play something?",
+        text: "Oh wow, they have a beautiful piano! I've been longing to play again. Would you mind if I played something? Music always helps me express what words cannot.",
         emotion: "happy"
       },
       {
         character: "Mobi",
-        text: "Please do! I'd love to hear you play. Music has always helped me think more clearly.",
+        text: "Please do! I'd be honored to hear you play. Music has always helped me think more clearly and feel more deeply.",
         emotion: "happy"
       },
       {
+        character: "Narrator",
+        text: "Roshi's fingers dance across the keys like they're painting emotions in sound. The melody that emerges is gentle yet profound—a musical embodiment of finding someone special.",
+        emotion: "neutral"
+      },
+      {
         character: "Roshi",
-        text: "♪ *plays a gentle, romantic melody* ♪ This piece always reminds me of finding someone special...",
+        text: "♪ *plays a gentle, romantic melody* ♪ This piece always reminds me of the moment when two souls recognize each other...",
         emotion: "dreamy"
       },
       {
+        character: "Narrator",
+        text: "The music fills the room with a warmth that seems to wrap around both their hearts, creating a perfect moment where time seems to pause just for them.",
+        emotion: "neutral"
+      },
+      {
         character: "Mobi",
-        text: "That was beautiful, Roshi. The way you express emotion through music is incredible. It's like you're speaking directly to the soul.",
+        text: "That was absolutely beautiful, Roshi. The way you express emotion through music is incredible—it's like you're speaking directly to the soul.",
         emotion: "thoughtful"
       },
       {
         character: "Roshi",
-        text: "Thank you, Mobi. You know, I think I understand why I played that particular piece... it's because of how I feel when I'm with you.",
+        text: "Thank you, Mobi. You know, I think I understand now why I chose that particular piece... it's because of how I feel when I'm with you.",
         emotion: "shy"
       },
       {
-        character: "Mobi",
-        text: "I feel the same way. There's something special about our connection - the way we complement each other's strengths.",
-        emotion: "happy"
-      },
-      {
-        character: null,
-        text: "This moment feels perfect. The music room has become a place where your hearts truly connect.",
+        character: "Narrator",
+        text: "In this moment, surrounded by instruments that create harmony, their hearts begin to recognize the perfect harmony they create together—different notes that form a beautiful chord.",
         emotion: "neutral",
         choices: [
           {
             id: 1,
-            text: "Tell her how you feel about her",
+            text: "💕 Tell her how you truly feel",
             type: "romantic",
             points: 5,
             nextScene: "romantic_confession"
           },
           {
             id: 2,
-            text: "Suggest making music together regularly",
+            text: "🎼 Suggest creating music together regularly",
             type: "thoughtful",
             points: 3,
             nextScene: "musical_partnership"
           },
           {
             id: 3,
-            text: "Ask about her musical background",
+            text: "🎹 Ask about her musical journey",
             type: "logical",
             points: 2,
             nextScene: "musical_discussion"
@@ -406,47 +336,57 @@ export const gameStory = {
   },
 
   romantic_confession: {
-    title: "Hearts in Harmony",
+    title: "Hearts in Perfect Harmony",
     location: "music_room",
     dialogue: [
       {
-        character: "Mobi",
-        text: "Roshi, I need to tell you something. Since we met, you've brought color and music into my carefully planned world.",
-        emotion: "thoughtful"
-      },
-      {
-        character: "Roshi",
-        text: "Mobi... you've given me the stability and understanding I never knew I needed. You make me feel like my dreams are valid.",
-        emotion: "happy"
-      },
-      {
-        character: "Mobi",
-        text: "I think... I think I'm falling in love with you. Not just with your creativity, but with how you see the world, how you make me want to be more spontaneous.",
-        emotion: "happy"
-      },
-      {
-        character: "Roshi",
-        text: "I love you too, Mobi. You've shown me that having structure doesn't mean losing authenticity. You see the real me and appreciate it.",
-        emotion: "happy"
-      },
-      {
-        character: null,
-        text: "In the quiet music room, surrounded by instruments that create harmony, you both realize you've found your perfect harmony together.",
+        character: "Narrator",
+        text: "Some moments in life feel like they've been orchestrated by the universe itself—this is one of those moments, where honesty and vulnerability create the most beautiful music of all.",
         emotion: "neutral"
       },
       {
         character: "Mobi",
-        text: "Like two different notes that create a beautiful chord when played together.",
+        text: "Roshi, I need to tell you something important. Since we met, you've brought color and spontaneous joy into my carefully planned world in the most wonderful way.",
+        emotion: "thoughtful"
+      },
+      {
+        character: "Roshi",
+        text: "Mobi... I feel the same way. You've given me the stability and understanding I never knew I needed. You make me feel like my dreams are not just valid, but beautiful.",
+        emotion: "happy"
+      },
+      {
+        character: "Narrator",
+        text: "The piano seems to hum softly in the background, as if the entire room is holding its breath for this perfect moment of mutual recognition.",
+        emotion: "neutral"
+      },
+      {
+        character: "Mobi",
+        text: "I think... I think I'm falling in love with you. Not just with your creativity and your music, but with how you see the world, how you make me want to embrace spontaneity.",
         emotion: "happy"
       },
       {
         character: "Roshi",
-        text: "That's the most beautiful metaphor ever. Yes, we're like a perfect harmony - different but complementary.",
+        text: "I love you too, Mobi. You've shown me that having structure doesn't mean losing authenticity. You see the real me and help me believe in myself.",
+        emotion: "happy"
+      },
+      {
+        character: "Narrator",
+        text: "In the quiet music room, surrounded by instruments that create harmony from different notes, they realize they've found their perfect harmony—two different melodies that create something more beautiful together than either could alone.",
+        emotion: "neutral"
+      },
+      {
+        character: "Mobi",
+        text: "We're like two different musical notes that create a beautiful chord when played together—complementary, not identical.",
+        emotion: "happy"
+      },
+      {
+        character: "Roshi",
+        text: "That's the most beautiful metaphor ever! Yes, we're like a perfect harmony—different but complementary, creating something magical together.",
         emotion: "dreamy"
       },
       {
-        character: null,
-        text: "Congratulations! You've unlocked the 'Perfect Harmony' ending. Mobi and Roshi's love story shows how two different personality types can create something beautiful together - his planning and her spontaneity, his structure and her creativity, combining to create a lasting and meaningful relationship.",
+        character: "Narrator",
+        text: "And so begins a love story written in the language of understanding, painted in the colors of complementary differences, and set to the music of two hearts beating in perfect harmony. Congratulations on discovering that the most beautiful relationships are built not on sameness, but on the magical balance of different strengths coming together.",
         emotion: "neutral"
       }
     ]
@@ -462,26 +402,26 @@ export const locations = {
     pixelColor: "#4A90E2"
   },
   library: {
-    name: "Library",
-    description: "A quiet place for reading and study",
+    name: "Library", 
+    description: "Quiet sanctuary of knowledge",
     available: true,
     pixelColor: "#5B7EC8"
   },
   cafe: {
     name: "Café",
-    description: "Warm and welcoming with great coffee",
+    description: "Warm space for conversation",
     available: true,
     pixelColor: "#7B68EE"
   },
   garden: {
     name: "Garden",
-    description: "Peaceful outdoor space with beautiful flowers",
+    description: "Peaceful natural retreat",
     available: true,
     pixelColor: "#9370DB"
   },
   music_room: {
     name: "Music Room",
-    description: "Filled with instruments and musical inspiration",
+    description: "Where melodies come alive",
     available: false,
     pixelColor: "#FF69B4"
   }
