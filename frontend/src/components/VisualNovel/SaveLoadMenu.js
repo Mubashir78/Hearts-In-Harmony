@@ -107,7 +107,6 @@ const SaveLoadMenu = ({ onSave, onLoad, onClose }) => {
                   ) : (
                     <div className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4" style={{ fontFamily: 'monospace' }}>
                       <div>📖 {slot.currentSceneId}</div>
-                      <div className="hidden sm:block">📍 {slot.currentLocation}</div>
                       <div>💕 {slot.gameState.relationshipPoints}</div>
                       <div className="hidden sm:block">📅 {slot.formattedDate}</div>
                     </div>

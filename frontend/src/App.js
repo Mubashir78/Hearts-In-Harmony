@@ -5,7 +5,7 @@ import axios from "axios";
 import GameEngine from "./components/VisualNovel/GameEngine";
 import { Card } from "./components/ui/card";
 import { Button } from "./components/ui/button";
-import { Heart, Play } from "lucide-react";
+import { Play } from "lucide-react";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
